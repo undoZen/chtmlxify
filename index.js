@@ -1,17 +1,20 @@
 'use strict';
 var path = require('path');
 var through = require('through2');
-var htmlx = require('htmlx');
+var chtmlx = require('chtmlx');
+var coffee = require('coffee-script');
 
 module.exports = function (ext) {
-  ext = ext || '.htmlx';
+  ext = ext || '.chtmlx';
   if (ext[0] != '.') {
     ext = '.' + ext;
   }
   return function (file) {
     return through(function (buf, enc, next) {
       if (path.extname(file) === ext) {
-        this.push(htmlx(buf.toString('utf-8'), file));
+        var transformed = chtmlx(buf.toString('utf-8'), file);
+        transformed = coffee.compile(transformed, { bare: true });
+        this.push(transformed);
       } else {
         this.push(buf);
       }

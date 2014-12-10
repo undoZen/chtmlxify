@@ -1,0 +1,1 @@
+<p>age: {@props.age} email: {@props.email}</p>
