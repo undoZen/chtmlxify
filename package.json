@@ -1,6 +1,6 @@
 {
   "name": "chtmlxify",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "write react templates in separate *.chtmlx files and bundle them with browserify.",
   "main": "index.js",
   "scripts": {
